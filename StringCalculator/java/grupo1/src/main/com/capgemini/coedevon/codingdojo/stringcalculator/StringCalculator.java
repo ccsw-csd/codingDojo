@@ -1,4 +1,4 @@
-package com.capgemini.coedevon.codingdojo.stringcalculator.sesion1;
+package com.capgemini.coedevon.codingdojo.stringcalculator;
 
 /**
  * Kata String Calculator

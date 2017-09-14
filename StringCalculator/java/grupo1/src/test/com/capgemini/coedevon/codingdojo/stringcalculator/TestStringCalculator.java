@@ -1,11 +1,11 @@
-package com.capgemini.coedevon.codingdojo.stringcalculator.sesion1;
+package com.capgemini.coedevon.codingdojo.stringcalculator;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.capgemini.coedevon.codingdojo.stringcalculator.sesion1.StringCalculator;
+import com.capgemini.coedevon.codingdojo.stringcalculator.StringCalculator;
 
 /**
  * jUnit Test String Calculator
