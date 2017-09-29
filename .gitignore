@@ -1,6 +1,5 @@
 *.class
 *.classpath
-*.project
 *.iml
 target/
 /.settings/
