@@ -7,6 +7,11 @@ eclipse-target/
 **/src/generated/
 **/tmp/
 
+.classpath
+.project
+bin/
+.settings/
+
 # Package Files #
 *.jar
 *.war
