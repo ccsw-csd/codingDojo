@@ -4,7 +4,7 @@ package com.capgemini.coedevon.codingdojo.rockpaperscissorslizardspock
 enum class Movement {
 
     ROCK {
-        override fun getOtherPlayerMovementsToWin(): Array<Movement> = arrayOf(SCISSORS, Movement.LIZARD)
+        override fun getOtherPlayerMovementsToWin(): Array<Movement> = arrayOf(Movement.SCISSORS, Movement.LIZARD)
     },
     PAPER {
         override fun getOtherPlayerMovementsToWin(): Array<Movement> = arrayOf(Movement.SPOCK, Movement.ROCK)
