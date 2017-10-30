@@ -7,9 +7,9 @@ package com.capgemini.coedevon.codingdojo.rockpaperscissorslizardspock
  */
 class RockPaperScissorsLizardSpock {
     /**
-     * 
+     *
      */
-    fun play(playerOneMovement: Movement, playerTwoMovement: Movement): Int {
+    fun play(playerOneMovement: Movement, playerTwoMovement: Movement): GameResult {
 
         return playerOneMovement.calculateResult(playerTwoMovement)
     }

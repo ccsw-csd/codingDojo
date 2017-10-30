@@ -21,13 +21,13 @@ enum class Movement {
 
     abstract fun getOtherPlayerMovementsToWin(): Array<Movement>
 
-    fun calculateResult(otherMovement: Movement): Int {
+    fun calculateResult(otherMovement: Movement): GameResult {
         if (this == otherMovement)
-            return 0
+            return GameResult.DRAW
 
         if (getOtherPlayerMovementsToWin().contains(otherMovement))
-            return 1
+            return GameResult.PLAYER_1_WINS
 
-        return 2
+        return GameResult.PLAYER_2_WINS
     }
 }
