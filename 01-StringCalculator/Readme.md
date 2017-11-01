@@ -20,4 +20,4 @@
 
 # Collaborators
 
-* Ferran Bou (@fbougeno)
+* Ferran Bou ([@fbougeno](https://github.com/fbougeno))
