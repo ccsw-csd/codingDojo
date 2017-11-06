@@ -21,3 +21,4 @@
 # Collaborators
 
 * Ferran Bou ([@fbougeno](https://github.com/fbougeno))
+* Jhonatan Core (@corevill(https://github.com/corevill))
