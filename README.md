@@ -11,6 +11,7 @@ Coding Dojo sessions
   - Elixir, solution by Javi Mollà ([@javimolla](https://github.com/javimolla))
   - Javascript: solution by Jhonatan Core ([@corevill](https://github.com/corevill))
   - Kotlin: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno))
+  - Rust: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno))
 - [Kata GildedRose](https://github.com/emilybache/GildedRose-Refactoring-Kata) : Refactoring 
   - Java solution: practice for group 1 (part 1)
 
