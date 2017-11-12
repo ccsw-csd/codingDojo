@@ -24,14 +24,14 @@ pub struct GildedRose {
 
 fn backstage_passes_handler(item : &mut Item){
     item.sell_in = item.sell_in - 1 ;
-    let quality  = if item.sell_in < 0  {
+    let quality : i32  = if item.sell_in < 0  {
         0
     } else if item.sell_in <= 5 { 
-        item.quality + (QUALITY_UNIT * 3) as i32
+        item.quality + (QUALITY_UNIT * 3) 
     } else if item.sell_in <= 10 {
-        item.quality + (QUALITY_UNIT * 2) as i32
+        item.quality + (QUALITY_UNIT * 2) 
     } else {
-         item.quality + QUALITY_UNIT as i32
+         item.quality + QUALITY_UNIT 
     };
  
     if quality <= 50 {
@@ -44,10 +44,10 @@ fn backstage_passes_handler(item : &mut Item){
 fn aged_brie_handler(item : &mut Item){
     
     item.sell_in = item.sell_in - 1 ;
-    let quality  = if item.sell_in < 0  {
-        item.quality + (QUALITY_UNIT * 2) as i32
+    let quality : i32   = if item.sell_in < 0  {
+        item.quality + (QUALITY_UNIT * 2) 
     } else {
-        item.quality + QUALITY_UNIT as i32
+        item.quality + QUALITY_UNIT 
     };
  
     if quality <= 50 {
@@ -57,15 +57,15 @@ fn aged_brie_handler(item : &mut Item){
     }
 }
 
-/*fn no_op_handler(_ : &mut Item) {}*/
+fn no_op_handler(_ : &mut Item) {}
 
 fn generic_handler(item : &mut Item) {
     
     item.sell_in = item.sell_in - 1 ;
-    let quality  = if item.sell_in < 0  {
-        item.quality - (QUALITY_UNIT * 2) as i32
+    let quality  : i32  = if item.sell_in < 0  {
+        item.quality - (QUALITY_UNIT * 2)
     } else {
-        item.quality - QUALITY_UNIT as i32
+        item.quality - QUALITY_UNIT 
     };
  
     if quality >= 0 {
@@ -75,7 +75,7 @@ fn generic_handler(item : &mut Item) {
     }
 }
 
-/*fn get_handler(name: &String) -> &'static Fn(&mut Item) -> ()  {
+fn get_handler(name: &String) -> &'static Fn(&mut Item) -> ()  {
 
     if name == AGED_BRIE {
         &aged_brie_handler
@@ -86,14 +86,23 @@ fn generic_handler(item : &mut Item) {
     } else {
         &generic_handler
     }
-}*/
+}
 
 impl GildedRose {
     pub fn new(items: vec::Vec<Item>) -> GildedRose {
         GildedRose {items: items}
     }
+    
+    pub fn update_quality(&mut self){
 
-    pub fn update_quality(&mut self) {
+        for mut item in &mut self.items{
+           
+            let handler = get_handler(&item.name);
+            handler(&mut item);
+        }
+    }
+
+  /*  pub fn update_quality(&mut self) {
         for mut item in &mut self.items{
             if item.name == AGED_BRIE {
                 aged_brie_handler(&mut item)
@@ -105,16 +114,8 @@ impl GildedRose {
                 generic_handler(&mut item)
             }
         }
-    }
-    /*pub fn update_quality(&mut self){
-
-        for mut item in &mut self.items{
-           
-            let handler = get_handler(&item.name);
-            handler(&mut item);
-        }
-    }*/
-
+    } */
+ 
     /*pub fn update_quality(&mut self) {
         for item in &mut self.items {
             if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" {
