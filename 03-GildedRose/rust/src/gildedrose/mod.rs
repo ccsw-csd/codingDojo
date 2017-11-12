@@ -5,6 +5,9 @@ static AGED_BRIE: &'static str = "Aged Brie";
 static MAGIC_HAND: &'static str = "Sulfuras, Hand of Ragnaros";
 static BACKSTAGE_PASSES: &'static str = "Backstage passes to a TAFKAL80ETC concert";
 const  QUALITY_UNIT: i32 = 1;
+const  MAX_QUALITY: i32 = 50;
+const  MIN_QUALITY: i32 = 0;
+const  MIN_SELL_IN: i32 = 0;
 
 pub struct Item {
     pub name: string::String,
@@ -22,9 +25,13 @@ pub struct GildedRose {
     pub items: vec::Vec<Item>
 }
 
+fn dec_sell_in(item: &mut Item){
+    item.sell_in =  item.sell_in - 1; 
+}
 fn backstage_passes_handler(item : &mut Item){
-    item.sell_in = item.sell_in - 1 ;
-    let quality : i32  = if item.sell_in < 0  {
+    
+    dec_sell_in(item);
+    let quality : i32  = if item.sell_in < MIN_SELL_IN  {
         0
     } else if item.sell_in <= 5 { 
         item.quality + (QUALITY_UNIT * 3) 
@@ -34,26 +41,26 @@ fn backstage_passes_handler(item : &mut Item){
          item.quality + QUALITY_UNIT 
     };
  
-    if quality <= 50 {
+    if quality <= MAX_QUALITY {
         item.quality = quality;
     } else {
-        item.quality = 50;
+        item.quality = MAX_QUALITY;
     }
 }
 
 fn aged_brie_handler(item : &mut Item){
     
-    item.sell_in = item.sell_in - 1 ;
-    let quality : i32   = if item.sell_in < 0  {
+    dec_sell_in(item);
+    let quality : i32   = if item.sell_in < MIN_SELL_IN  {
         item.quality + (QUALITY_UNIT * 2) 
     } else {
         item.quality + QUALITY_UNIT 
     };
  
-    if quality <= 50 {
+    if quality <= MAX_QUALITY {
         item.quality = quality;
     } else {
-        item.quality = 50;
+        item.quality = MAX_QUALITY;
     }
 }
 
@@ -61,17 +68,17 @@ fn no_op_handler(_ : &mut Item) {}
 
 fn generic_handler(item : &mut Item) {
     
-    item.sell_in = item.sell_in - 1 ;
-    let quality  : i32  = if item.sell_in < 0  {
+    dec_sell_in(item);
+    let quality  : i32  = if item.sell_in < MIN_SELL_IN  {
         item.quality - (QUALITY_UNIT * 2)
     } else {
         item.quality - QUALITY_UNIT 
     };
  
-    if quality >= 0 {
+    if quality >= MIN_QUALITY {
         item.quality = quality;
     } else {
-        item.quality = 0;
+        item.quality = MIN_QUALITY;
     }
 }
 
@@ -92,29 +99,15 @@ impl GildedRose {
     pub fn new(items: vec::Vec<Item>) -> GildedRose {
         GildedRose {items: items}
     }
-    
+
     pub fn update_quality(&mut self){
 
-        for mut item in &mut self.items{
+        for item in &mut self.items{
            
             let handler = get_handler(&item.name);
-            handler(&mut item);
+            handler(item);
         }
     }
-
-  /*  pub fn update_quality(&mut self) {
-        for mut item in &mut self.items{
-            if item.name == AGED_BRIE {
-                aged_brie_handler(&mut item)
-            } else if item.name == MAGIC_HAND  {
-                //no_op
-            } else if item.name == BACKSTAGE_PASSES  {
-                backstage_passes_handler(&mut item)
-            } else {
-                generic_handler(&mut item)
-            }
-        }
-    } */
  
     /*pub fn update_quality(&mut self) {
         for item in &mut self.items {
