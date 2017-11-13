@@ -14,6 +14,6 @@ Coding Dojo sessions
   - Rust: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno))
 - [Kata GildedRose](https://github.com/emilybache/GildedRose-Refactoring-Kata) : Refactoring 
   - Java solution: practice for group 1 (part 1)
-  - Rust: solution by Ferran Bou ([@ivanderk](https://github.com/ivanderk))
+  - Rust: solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))
 
 
