@@ -10,20 +10,20 @@ public class GenericItemTest extends AbstractGildedRoseTest {
   @Test
   public void genericItemDecreaseQualityOnePerDay() {
 
-    testItemQuality(GENERIC_ITEM, 10, 10, -1);
+    testItemQuality(new Item(GENERIC_ITEM), 10, 10, -1);
   }
 
   @Test
   public void genericItemDecreaseQualityTwoPerDayWhenSellDatePass() {
 
-    testItemQuality(GENERIC_ITEM, 0, 10, -2);
+    testItemQuality(new Item(GENERIC_ITEM), 0, 10, -2);
 
   }
 
   @Test
   public void genericItemQualityCanNeverBeNegative() {
 
-    testItemQuality(GENERIC_ITEM, 10, 0, 0);
+    testItemQuality(new Item(GENERIC_ITEM), 10, 0, 0);
 
   }
 

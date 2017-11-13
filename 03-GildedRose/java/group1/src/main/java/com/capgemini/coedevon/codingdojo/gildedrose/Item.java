@@ -1,6 +1,6 @@
 package com.capgemini.coedevon.codingdojo.gildedrose;
 
-public final class Item {
+public class Item {
 
   public String name;
 
@@ -8,10 +8,8 @@ public final class Item {
 
   public int quality;
 
-  public Item(String name, int sellIn, int quality) {
+  public Item(String name) {
     this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
   }
 
   @Override

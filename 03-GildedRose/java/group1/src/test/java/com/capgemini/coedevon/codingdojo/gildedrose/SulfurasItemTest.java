@@ -10,7 +10,7 @@ public class SulfurasItemTest extends AbstractGildedRoseTest {
   @Test
   public void sulfurasItemNeverChangeQualityOrSellin() {
 
-    testItemQualityAndSellin(SULFURAS_ITEM, 10, 80, 0, 0);
+    testItemQualityAndSellin(new Item(SULFURAS_ITEM), 10, 80, 0, 0);
 
   }
 
