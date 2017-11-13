@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.capgemini.coedevon.codingdojo</groupId>
-    <artifactId>GildedRoseGroup1</artifactId>
+    <artifactId>GildedRoseGroup1Part1</artifactId>
     <version>1.0</version>
 
     <properties>
