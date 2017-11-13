@@ -12,8 +12,3 @@ The game is an expansion on the game Rock, Paper, Scissors. Each player picks a 
 * Paper disproves Spock
 * Spock vaporizes Rock
 * (and as it always has) Rock crushes Scissors
-
-# Collaborators
-* Javi Mollà ([@javimolla](https://github.com/javimolla))
-* Jhonatan Core ([@corevill](https://github.com/corevill))
-* Ferran Bou ([@fbougeno](https://github.com/fbougeno))
