@@ -1,6 +1,7 @@
 use super::{Item, GildedRose, AGED_BRIE, MAGIC_HAND, BACKSTAGE_PASSES};
 
 static DEXTERITY_VEST: &'static str = "+5 Dexterity Vest";
+static CONJURED_CAKE: &'static str = "Conjured Mana Cake";
 
 fn test_item(item_name: String, initial_sell_in: i32, initial_quality: i32, new_sell_in: i32, new_quality: i32) {
  
@@ -64,6 +65,21 @@ pub fn test_backstage_passes() {
     test_item(String::from(BACKSTAGE_PASSES), 5, 10, 4, 13);
     //and if there are no day less, the quality drops to 0
     test_item(String::from(BACKSTAGE_PASSES), 0, 10, -1, 0);
+    
+}
+
+#[test]
+pub fn test_conjured() {
+
+    //At the end of the day both sell_in and quality decrement * 2
+    test_item(String::from(CONJURED_CAKE), 10, 20, 9,18);
+
+    //if sell_in < 0, quality degrades with quadruple the velocity
+    test_item(String::from(CONJURED_CAKE), 0, 4, -1, 0);
+    
+    //the quality of an item can never be < 0 nor > 50
+    test_item(String::from(CONJURED_CAKE), 0, 1, -1, 0);
+    //TODO check > 50 ILLEGAL state
     
 }
 
