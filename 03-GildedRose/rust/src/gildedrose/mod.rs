@@ -4,6 +4,8 @@ use std::vec;
 static AGED_BRIE: &'static str = "Aged Brie";
 static MAGIC_HAND: &'static str = "Sulfuras, Hand of Ragnaros";
 static BACKSTAGE_PASSES: &'static str = "Backstage passes to a TAFKAL80ETC concert";
+static CONJURED: &'static str = "Conjured";
+
 const  QUALITY_UNIT: i32 = 1;
 const  MAX_QUALITY: i32 = 50;
 const  MIN_QUALITY: i32 = 0;
@@ -28,10 +30,22 @@ pub struct GildedRose {
 fn dec_sell_in(item: &mut Item){
     item.sell_in =  item.sell_in - 1; 
 }
-fn backstage_passes_handler(item : &mut Item){
+
+fn update_quality(quality: i32, item: &mut Item){
+
+    if quality < MIN_QUALITY {
+        item.quality = MIN_QUALITY;
+    }  else if quality > MAX_QUALITY {
+        item.quality = MAX_QUALITY;
+    }
+   else {
+        item.quality = quality;
+    } 
+}
+
+fn backstage_passes_handler(item : &mut Item) -> i32 {
     
-    dec_sell_in(item);
-    let quality : i32  = if item.sell_in < MIN_SELL_IN  {
+    if item.sell_in < MIN_SELL_IN  {
         0
     } else if item.sell_in <= 5 { 
         item.quality + (QUALITY_UNIT * 3) 
@@ -39,59 +53,58 @@ fn backstage_passes_handler(item : &mut Item){
         item.quality + (QUALITY_UNIT * 2) 
     } else {
          item.quality + QUALITY_UNIT 
-    };
- 
-    if quality <= MAX_QUALITY {
-        item.quality = quality;
-    } else {
-        item.quality = MAX_QUALITY;
     }
 }
 
-fn aged_brie_handler(item : &mut Item){
+fn aged_brie_handler(item : &mut Item) -> i32{
     
-    dec_sell_in(item);
-    let quality : i32   = if item.sell_in < MIN_SELL_IN  {
+    if item.sell_in < MIN_SELL_IN  {
         item.quality + (QUALITY_UNIT * 2) 
     } else {
         item.quality + QUALITY_UNIT 
-    };
- 
-    if quality <= MAX_QUALITY {
-        item.quality = quality;
-    } else {
-        item.quality = MAX_QUALITY;
     }
 }
 
 fn no_op_handler(_ : &mut Item) {}
 
-fn generic_handler(item : &mut Item) {
+fn generic_handler(item : &mut Item) -> i32 {
     
-    dec_sell_in(item);
-    let quality  : i32  = if item.sell_in < MIN_SELL_IN  {
+    if item.sell_in < MIN_SELL_IN  {
         item.quality - (QUALITY_UNIT * 2)
     } else {
         item.quality - QUALITY_UNIT 
-    };
- 
-    if quality >= MIN_QUALITY {
-        item.quality = quality;
-    } else {
-        item.quality = MIN_QUALITY;
     }
 }
 
-fn get_handler(name: &String) -> &'static Fn(&mut Item) -> ()  {
+fn conjured_handler(item : &mut Item) -> i32{
+    
+    if item.sell_in < MIN_SELL_IN  {
+        item.quality - (QUALITY_UNIT * 4)
+    } else {
+        item.quality - (QUALITY_UNIT * 2)
+    }
+}
+
+fn wrap_handler(f: Box<Fn(&mut Item) -> i32>) ->  Box<Fn(&mut Item) -> ()> {
+    Box::new(move | item | {
+        dec_sell_in(item);
+        let quality = f(item);
+        update_quality(quality, item);
+    }) 
+}
+
+fn get_handler(name: &String) -> Box<Fn(&mut Item) -> ()>  {
 
     if name == AGED_BRIE {
-        &aged_brie_handler
+        wrap_handler(Box::new(aged_brie_handler))
     } else if name == MAGIC_HAND  {
-        &no_op_handler
+        Box::new(no_op_handler)
     } else if name == BACKSTAGE_PASSES  {
-        &backstage_passes_handler
+        wrap_handler(Box::new(backstage_passes_handler))
+    } else if name.contains(CONJURED) {
+        wrap_handler(Box::new(conjured_handler))        
     } else {
-        &generic_handler
+        wrap_handler(Box::new(generic_handler))
     }
 }
 
@@ -108,59 +121,6 @@ impl GildedRose {
             handler(item);
         }
     }
- 
-    /*pub fn update_quality(&mut self) {
-        for item in &mut self.items {
-            if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" {
-                if item.quality > 0 {
-                    if item.name != "Sulfuras, Hand of Ragnaros" {
-                        item.quality = item.quality - 1;
-                    }
-                }
-            } else {
-                if item.quality < 50
-                {
-                    item.quality = item.quality + 1;
-
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert" {
-                        if item.sell_in < 11 {
-                            if item.quality < 50 {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-
-                        if item.sell_in < 6 {
-                            if item.quality < 50 {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if item.name != "Sulfuras, Hand of Ragnaros" {
-                item.sell_in = item.sell_in - 1;
-            }
-
-            if item.sell_in < 0 {
-                if item.name != "Aged Brie" {
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert" {
-                        if item.quality > 0 {
-                            if item.name != "Sulfuras, Hand of Ragnaros" {
-                                item.quality = item.quality - 1;
-                            }
-                        }
-                    } else {
-                        item.quality = item.quality - item.quality;
-                    }
-                } else {
-                    if item.quality < 50 {
-                        item.quality = item.quality + 1;
-                    }
-                }
-            }
-        }
-    }*/
 }
 
 #[cfg(test)]
