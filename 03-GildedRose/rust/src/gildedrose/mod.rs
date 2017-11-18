@@ -105,18 +105,6 @@ fn get_handler(name: &String) -> Box<Fn(&mut Item) -> ()>  {
                 wrap_handler(Box::new(generic_handler))
             }
     }
-/*
-    if name == AGED_BRIE {
-        wrap_handler(Box::new(aged_brie_handler))
-    } else if name == MAGIC_HAND  {
-        Box::new(no_op_handler)
-    } else if name == BACKSTAGE_PASSES  {
-        wrap_handler(Box::new(backstage_passes_handler))
-    } else if name.contains(CONJURED) {
-        wrap_handler(Box::new(conjured_handler))        
-    } else {
-        wrap_handler(Box::new(generic_handler))
-    }*/
 }
 
 impl GildedRose {
