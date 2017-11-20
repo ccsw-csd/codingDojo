@@ -1,10 +1,10 @@
 use std::string;
 use std::vec;
 
-static AGED_BRIE: &'static str = "Aged Brie";
-static MAGIC_HAND: &'static str = "Sulfuras, Hand of Ragnaros";
-static BACKSTAGE_PASSES: &'static str = "Backstage passes to a TAFKAL80ETC concert";
-static CONJURED: &'static str = "Conjured";
+const AGED_BRIE: &'static str = "Aged Brie";
+const MAGIC_HAND: &'static str = "Sulfuras, Hand of Ragnaros";
+const BACKSTAGE_PASSES: &'static str = "Backstage passes to a TAFKAL80ETC concert";
+const CONJURED: &'static str = "Conjured";
 
 const  QUALITY_UNIT: i32 = 1;
 const  MAX_QUALITY: i32 = 50;
@@ -95,16 +95,15 @@ fn wrap_handler(f: Box<Fn(&mut Item) -> i32>) ->  Box<Fn(&mut Item) -> ()> {
 
 fn get_handler(name: &String) -> Box<Fn(&mut Item) -> ()>  {
 
-    if name == AGED_BRIE {
-        wrap_handler(Box::new(aged_brie_handler))
-    } else if name == MAGIC_HAND  {
-        Box::new(no_op_handler)
-    } else if name == BACKSTAGE_PASSES  {
-        wrap_handler(Box::new(backstage_passes_handler))
-    } else if name.contains(CONJURED) {
-        wrap_handler(Box::new(conjured_handler))        
-    } else {
-        wrap_handler(Box::new(generic_handler))
+    match name.as_ref() {
+        AGED_BRIE => wrap_handler(Box::new(aged_brie_handler)), 
+        MAGIC_HAND =>  Box::new(no_op_handler),
+        BACKSTAGE_PASSES => wrap_handler(Box::new(backstage_passes_handler)), 
+        _ =>  if name.contains(CONJURED) {
+                wrap_handler(Box::new(conjured_handler)) 
+            } else {  
+                wrap_handler(Box::new(generic_handler))
+            }
     }
 }
 
