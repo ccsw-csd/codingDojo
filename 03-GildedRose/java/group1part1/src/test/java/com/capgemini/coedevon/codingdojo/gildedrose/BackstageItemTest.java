@@ -10,28 +10,28 @@ public class BackstageItemTest extends AbstractGildedRoseTest {
   @Test
   public void backstageItemIncreaseQualityOnePerDay() {
 
-    testItemQuality(new Item(BACKSTAGE_ITEM), 20, 20, 1);
+    testItemQuality(BACKSTAGE_ITEM, 20, 20, 1);
 
   }
 
   @Test
   public void backstageItemIncreaseQualityTwoPerDayWhenTenOrMinusDaysSellin() {
 
-    testItemQuality(new Item(BACKSTAGE_ITEM), 10, 20, 2);
+    testItemQuality(BACKSTAGE_ITEM, 10, 20, 2);
 
   }
 
   @Test
   public void backstageItemIncreaseQualityThreePerDayWhenFiveOrMinusDaysSellin() {
 
-    testItemQuality(new Item(BACKSTAGE_ITEM), 5, 20, 3);
+    testItemQuality(BACKSTAGE_ITEM, 5, 20, 3);
 
   }
 
   @Test
   public void backstageItemQualityZeroWhenSellinPassed() {
 
-    testItemQuality(new Item(BACKSTAGE_ITEM), 0, 20, -20);
+    testItemQuality(BACKSTAGE_ITEM, 0, 20, -20);
 
   }
 

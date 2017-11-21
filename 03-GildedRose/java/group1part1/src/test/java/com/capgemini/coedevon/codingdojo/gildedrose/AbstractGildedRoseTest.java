@@ -7,11 +7,9 @@ import java.util.Arrays;
 @SuppressWarnings("javadoc")
 public abstract class AbstractGildedRoseTest {
 
-  protected void testItemQuality(Item item, int initialSellIn, int initialQuality, int deltaQuality) {
+  protected void testItemQuality(String itemName, int initialSellIn, int initialQuality, int deltaQuality) {
 
-    item.setQuality(initialQuality);
-    item.setSellIn(initialSellIn);
-
+    Item item = new Item(itemName, initialSellIn, initialQuality);
     GildedRose app = new GildedRose(Arrays.asList(item));
     app.updateQuality();
 
@@ -19,12 +17,10 @@ public abstract class AbstractGildedRoseTest {
     assertEquals(initialSellIn - 1, item.sellIn);
   }
 
-  protected void testItemQualityAndSellin(Item item, int initialSellIn, int initialQuality, int deltaSellin,
+  protected void testItemQualityAndSellin(String itemName, int initialSellIn, int initialQuality, int deltaSellin,
       int deltaQuality) {
 
-    item.setQuality(initialQuality);
-    item.setSellIn(initialSellIn);
-
+    Item item = new Item(itemName, initialSellIn, initialQuality);
     GildedRose app = new GildedRose(Arrays.asList(item));
     app.updateQuality();
 
