@@ -20,3 +20,5 @@ Coding Dojo sessions
   - Rust: solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))  
   - Go: solution by Jhonatan Core ([@corevill](https://github.com/corevill))
 - [Kata Roman Numerals](http://www.solveet.com/exercises/Kata-Roman-Numerals/9) : TDD-Algorithm 
+  - Java: 
+	- Solution by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
