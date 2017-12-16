@@ -1,6 +1,6 @@
 # Coding Dojo
 
-Coding Dojo sessions
+## Coding Dojo sessions
 
 - [Kata String calculator](http://www.solveet.com/exercises/Kata-String-Calculator/8) : Starting with TDD
   - Java solution: practice for group 1, group 2
@@ -22,3 +22,10 @@ Coding Dojo sessions
 - [Kata Roman Numerals](http://www.solveet.com/exercises/Kata-Roman-Numerals/9) : TDD-Algorithm 
   - Java: 
 	- Solution by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
+  - Rust: solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk)) 
+  
+## Copyright
+
+Copyright (C) 2017 Capgemini ES
+
+Licensed under the MIT license. See the file "LICENSE" for details.
