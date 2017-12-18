@@ -39,6 +39,26 @@ pub fn test_to_value_from_latin(){
 }
 
 #[test]
+pub fn test_to_value_from_unicode(){
+    assert_eq!(number_value("Ⅰ").unwrap(), 1);
+    assert_eq!(number_value("Ⅱ").unwrap(), 2);
+
+    assert_eq!(number_value("Ⅳ").unwrap(), 4);
+    assert_eq!(number_value("Ⅴ").unwrap(), 5);
+    assert_eq!(number_value("Ⅵ").unwrap(), 6);
+    
+    assert_eq!(number_value("Ⅽ").unwrap(), 100);
+    assert_eq!(number_value("ⅭⅯ").unwrap(), 900);
+    
+    assert_eq!(number_value("ⅯⅭⅯⅩⅭ").unwrap(), 1990);
+    assert_eq!(number_value("ⅯⅯⅩⅧ").unwrap(), 2018);
+
+    //conventional max value to be able to  express in Roman Numerals
+    //using the strict rules
+    assert_eq!(number_value("ⅯⅯⅯⅭⅯⅩⅭⅨ").unwrap(),3999);
+}
+
+#[test]
 pub fn test_to_value_recursive_vs_iterative(){
     
     assert_eq!(number_value("X").unwrap(), number_value2("X").unwrap());

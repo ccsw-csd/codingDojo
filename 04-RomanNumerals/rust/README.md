@@ -31,6 +31,10 @@ The rust solution is provided in the _romannumerals_ module. Main characteristic
 
 - Number range of supported Roman Numerals is [1 .. 3999].
 
+- The _number_value_ function can read latin character numerals, unicode code points equal to the ASCII char byte order, as well as the code points reserved in Unicode especially for Roman Numerals; code point 2160-216F. In both cases only upper case characters are supported.
+
+- the "_number_presentation_" function only renders latin character numerals as that is recommended by the Unicode standard itself
+
 - RomanNumberValue and RomanNumberPresentation Traits showcase how existing types can be extended with the functionality implemented by "_number_presentation_" and "_number_value_" respectively. String types gain a "_roman_number_value_" method and u32 integers an "_as_roman_number_" method.
 
 - Shown in the tests but not used in the Traits, the modules contains the function "_number_value2_", an alternative recursive, immutable implementation. This to compare with the compact but mutable iterative default function "_number_value_".

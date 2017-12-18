@@ -12,6 +12,13 @@
 //! 
 //! - Number range of supported Roman Numerals is [1 .. 3999].
 //! 
+//! - The _number_value_ function can read latin character numerals, unicode code points equal to the ASCII 
+//!  char byte order, as well as the code points reserved in Unicode especially for Roman Numerals; code point 
+//!  2160-216F. In both cases only upper case characters are supported.
+//!
+//! - the "_number_presentation_" function only renders latin character numerals as that is recommended by the 
+//!  Unicode standard itself
+//! 
 //! - RomanNumberValue and RomanNumberPresentation Traits showcase how existing types can be extended with the 
 //!  functionality implemented by "_number_presentation_" and "_number_value_" respectively. String types gain a 
 //!  "_roman_number_value_" method and u32 integers an "_as_roman_number_" method.
@@ -53,6 +60,11 @@ struct RomanNumeral {
     value: u32
 }
 
+struct RomanNumeralMap {
+    unicode: char,
+    ascii: &'static str
+}
+
 /// Lookup buffer to search for (scan forward) Roman Numerals with their
 /// corresponding value. Note that the order in the buffer must accoint for 
 /// search order: i.e. 'CM' must be before 'C' in order to parse the correct
@@ -72,6 +84,39 @@ const NUMERALS: [RomanNumeral; 13] = [
     RomanNumeral {symbol: "V",  value: 5},
     RomanNumeral {symbol: "IV", value: 4},
     RomanNumeral {symbol: "I",  value: 1}];
+
+
+const NUMERALS_MAPS : [RomanNumeralMap; 16] = [
+    RomanNumeralMap {unicode: 'Ⅿ',  ascii: "M"},
+    RomanNumeralMap {unicode: 'Ⅾ',  ascii: "D"},
+    RomanNumeralMap {unicode: 'Ⅽ',  ascii: "C"},
+    RomanNumeralMap {unicode: 'Ⅼ',  ascii: "L"},
+    RomanNumeralMap {unicode: 'Ⅰ',  ascii: "I"},
+    RomanNumeralMap {unicode: 'Ⅱ',  ascii: "II"},
+    RomanNumeralMap {unicode: 'Ⅲ',  ascii: "III"},
+    RomanNumeralMap {unicode: 'Ⅳ',  ascii: "IV"},
+    RomanNumeralMap {unicode: 'Ⅴ',  ascii: "V"},
+    RomanNumeralMap {unicode: 'Ⅵ',  ascii: "VI"},
+    RomanNumeralMap {unicode: 'Ⅶ',  ascii: "VII"},
+    RomanNumeralMap {unicode: 'Ⅷ',  ascii: "VIII"},
+    RomanNumeralMap {unicode: 'Ⅸ',  ascii: "IX"},
+    RomanNumeralMap {unicode: 'Ⅹ',  ascii: "X"},
+    RomanNumeralMap {unicode: 'Ⅺ',  ascii: "XI"},
+    RomanNumeralMap {unicode: 'Ⅻ',  ascii: "XII"}];
+
+fn convert_unicode_numerals(roman: &str) -> String{
+
+    let mut converted = String::new();
+
+    for c in roman.chars() 
+    {
+        match NUMERALS_MAPS.iter().find( | &l | l.unicode == c ){
+            Some(uni) => converted.push_str(uni.ascii),
+            None => converted.push(c)
+        }
+    }
+    converted
+}
 
 /// Convert a number from [1..3999] to its string representation
 /// in Roman Numerals
@@ -94,8 +139,9 @@ pub fn number_presentation(mut number: u32) -> Option<String> {
 pub fn number_value(roman: &str) -> Option<u32> {
     
     let mut result = 0;
-    let mut data = roman;
-    
+    let converted = convert_unicode_numerals(roman); 
+    let mut data = converted.as_str();
+
     while data.len() > 0  {
         result += match NUMERALS.iter().find(|num| data.starts_with(num.symbol)) {
             Some(num) => {
@@ -106,7 +152,7 @@ pub fn number_value(roman: &str) -> Option<u32> {
         };
     }
     
-    verify_number(roman, result)
+    verify_number(converted.as_str(), result)
 }
 
 /// verify if the reported integer value
