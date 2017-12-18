@@ -1,0 +1,6 @@
+[package]
+name = "romannumerals"
+version = "0.1.0"
+authors = ["Iwan van der Kleijn <ivanderk@capgemini.com>"]
+
+[dependencies]
