@@ -1,5 +1,5 @@
 //! # Simple run-time wrapper for the romannumber module 
-//!
+//! 
 //! ## Details of the implementation of Kata: Roman Numerals
 //!
 //! The rust solution is provided in the _romannumerals_ module. Main characteristics of this implementation are:
@@ -26,6 +26,12 @@
 //! - Shown in the tests but not used in the Traits, the modules contains the function "_number_value2_", an 
 //!  alternative recursive, immutable implementation. This to compare with the compact but mutable iterative 
 //!  default function "_number_value_".
+//! 
+//! ## License
+//! 
+//! Copyright (c) 2017 by Iwan van der Kleijn. All rights reserved.
+//! 
+//! This program is MIT licensed. See the file LICENSE.
 
 /// Provides a type with the capability to generate a String representation 
 /// of the number in Roman Numerals
@@ -151,7 +157,6 @@ pub fn number_value(roman: &str) -> Option<u32> {
             None => return None
         };
     }
-    
     verify_number(converted.as_str(), result)
 }
 
@@ -159,11 +164,12 @@ pub fn number_value(roman: &str) -> Option<u32> {
 /// of a roman number is correct. 
 fn verify_number(roman: &str, val: u32) -> Option<u32>{
     match number_presentation(val){
-        Some(s) => if *s == *roman {
-            Some(val)
-        } else {
-            None
-        },
+        Some(s) => 
+            if s == roman {
+                Some(val)
+            } else {
+                None
+            },
         _ => None
     }
 }
@@ -173,7 +179,8 @@ fn verify_number(roman: &str, val: u32) -> Option<u32>{
 /// Give the integer value of a string representation of 
 /// a number in Roman Numerals - alternative recursive implemenation 
 pub fn number_value2(roman: &str) -> Option<u32> {
-    number_value_intern(roman, 0, roman)
+    let numerals = convert_unicode_numerals(roman);
+    number_value_intern(numerals.as_str(), 0, numerals.as_str())
 }
 
 fn number_value_intern(roman: &str, acc: u32, original: &str) -> Option<u32> {

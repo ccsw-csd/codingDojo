@@ -88,3 +88,9 @@ $ cargo doc --no-deps --open
 ```
 
 creates HTML documentation for the application. The --no-deps option tells Cargo to generate documentation only for the app itself, and not for any crates it depends on (it doesn´t in this version). The --open option tells Cargo to open the documentation in your browser afterward. Cargo saves the new documentation files in target/ doc.
+
+## license
+
+Copyright (c) 2017 by Iwan van der Kleijn. All rights reserved.
+
+This program is MIT licensed. See the file LICENSE.
