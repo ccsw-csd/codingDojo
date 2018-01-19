@@ -19,9 +19,11 @@
   - Java solution: example and strategy pattern by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
   - Rust: solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))  
   - Go: solution by Jhonatan Core ([@corevill](https://github.com/corevill))
+  - Python: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno))
 - [Kata Roman Numerals](http://www.solveet.com/exercises/Kata-Roman-Numerals/9) : TDD-Algorithm 
   - Java solution by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
-  - Rust solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk)) 
+  - Rust solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))
+  - Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
   
 ## Copyright
 

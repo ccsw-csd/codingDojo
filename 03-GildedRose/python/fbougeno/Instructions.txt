@@ -1,0 +1,4 @@
+To run the tests, just open a terminal and type:
+- python test_gilded_rose.py
+
+Tested with Python 3.
