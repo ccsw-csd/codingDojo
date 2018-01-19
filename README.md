@@ -24,6 +24,10 @@
   - Java solution by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
   - Rust solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))
   - Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
+- [Kata Potter](http://www.solveet.com/exercises/Kata-Potter/29) : TDD-Algorithm 
+	- Java solution: session practice 
+	- Java solution: example by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
+  
   
 ## Copyright
 
