@@ -31,20 +31,20 @@ defmodule Potter do
     |> Enum.min
   end
 
-  defp get_lists(0, books) do
-    books
+  defp get_lists(0, _) do
+    []
   end
   
   defp get_lists(max_books, books) do
-    [get_list(max_books, books), get_list(max_books - 1, books)]
+    [get_list(max_books, books) | get_lists(max_books - 1, books)]
   end
 
   defp get_list(_, []) do
     []
   end
 
-  defp get_list(1, _) do
-    nil
+  defp get_list(1, books) do
+    Enum.chunk books, 1
   end
 
   defp get_list(max_books, books) do
@@ -53,29 +53,9 @@ defmodule Potter do
       |> Enum.slice(0..max_books-1)
     rest = get_list(max_books, books -- uniques)
     case length(rest) do
-      0 -> 
-        [uniques]
-      _ -> 
-        [uniques | rest]
+      0 -> [uniques]
+      _ -> [uniques | rest]
     end
-  end
-
-  defp pricep(books) do
-    books
-    |> Enum.scan(0, fn(x, price) -> 
-      y = Enum.filter(x, fn(x) -> x != nil end)
-      num_books = length(y)
-      # Aplicamos un descuento u otro dependiendo del número de libros distintos
-      discount = 1 - (case num_books do
-        2 -> 0.05
-        3 -> 0.1
-        4 -> 0.2
-        5 -> 0.25
-        _ -> 0
-      end)
-      price + num_books * 8 * discount
-    end)
-    |> Enum.max
   end
 
   def get_lists(_, index, max) when index == max do
@@ -91,5 +71,26 @@ defmodule Potter do
         false -> nil
       end
     end) | get_lists(list, index + 1, max)]
+  end
+
+  defp pricep(books) do
+    books
+    |> Enum.scan(0, fn(x, price) -> 
+      num_books = Enum.filter(x, fn(x) -> 
+          x != nil 
+        end)
+        |> length
+      
+      # Aplicamos un descuento u otro dependiendo del número de libros distintos
+      price_per_book = 8 * (case num_books do
+        1 -> 1
+        2 -> 0.95
+        3 -> 0.9
+        4 -> 0.8
+        5 -> 0.75
+      end)
+      price + (num_books * price_per_book)
+    end)
+    |> Enum.max
   end
 end
