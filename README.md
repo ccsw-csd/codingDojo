@@ -27,6 +27,8 @@
 - [Kata Potter](http://www.solveet.com/exercises/Kata-Potter/29) : TDD-Algorithm 
 	- Java solution: session practice 
 	- Java solution: example by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
+	- Elixir, solution by Javi Mollà ([@javimolla](https://github.com/javimolla))
+	- Rust: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno))
 - Kata Rover : TDD-DesignPattern
 	- Java solution: session1 practice 
   
