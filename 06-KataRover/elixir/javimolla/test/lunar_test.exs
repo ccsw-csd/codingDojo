@@ -62,4 +62,28 @@ defmodule LunarTest do
     
     check 'W', 1, 0
   end
+
+  test "move forward and undo return initial position" do
+    Lunar.send_command 'F'
+    Lunar.send_command 'U'
+    
+    check 'N', 0, 0
+  end
+
+  test "move forward, turn left and undo once return 1 0" do
+    Lunar.send_command 'F'
+    Lunar.send_command 'L'
+    Lunar.send_command 'U'
+    
+    check 'N', 0, 1
+  end
+
+  test "move forward, turn left and undo twice return initial position" do
+    Lunar.send_command 'F'
+    Lunar.send_command 'L'
+    Lunar.send_command 'U'
+    Lunar.send_command 'U'
+    
+    check 'N', 0, 0
+  end
 end

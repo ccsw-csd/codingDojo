@@ -11,14 +11,11 @@ defmodule Lunar do
     end)
   end
 
-  def send_command(command) do
-    case command do
-      'F' -> move :forward
-      'B' -> move :backward
-      'L' -> turn :left
-      'R' -> turn :right
-    end
-  end
+  def send_command('F'), do: move :forward
+  def send_command('B'), do: move :backward
+  def send_command('L'), do: turn :left
+  def send_command('R'), do: turn :right
+  def send_command('U'), do: undo()
   
   defp get_axis_and_increment(:forward, 'N'), do: {:y, 1}
   defp get_axis_and_increment(:backward, 'N'), do: {:y, -1}
@@ -41,8 +38,7 @@ defmodule Lunar do
   defp turn(direction) do
     Agent.get_and_update(__MODULE__, fn map ->
       orientation = Map.get(map, :orientation)
-      
-      {:ok, Map.merge(map, %{:orientation => turn(direction, orientation), :last => %{}})}
+      {:ok, Map.merge(map, %{:orientation => turn(direction, orientation), :last => map})}
     end)
   end
 
@@ -56,7 +52,13 @@ defmodule Lunar do
         result > 100 -> 0
         true -> result
       end
-      {:ok, Map.merge(map, %{axis => result, :last => %{}})}
+      {:ok, Map.merge(map, %{axis => result, :last => map})}
+    end)
+  end
+
+  defp undo do
+    Agent.get_and_update(__MODULE__, fn map ->
+      {:ok, Map.get(map, :last)}
     end)
   end
 end
