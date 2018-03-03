@@ -8,11 +8,24 @@
 //! Copyright (c) 2018 by Iwan van der Kleijn. All rights reserved.
 //! 
 //! This program is MIT licensed. See the file LICENSE.
-//use std::fmt;
+use std::fmt;
 
 #[derive(Debug, PartialEq)]
 pub enum Orientation {
     North, South, West, East
+}
+// In order to use the `{}` marker, the trait `fmt::Display` must be implemented
+// manually for the type.
+impl fmt::Display for Orientation {
+
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            Orientation::North => write!(f, "{}", "North"),
+            Orientation::East => write!(f, "{}", "East"),
+            Orientation::South => write!(f, "{}", "South"),
+            Orientation::West => write!(f, "{}", "West"),
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -32,10 +45,10 @@ impl Rover {
     ///     - 'L' - turn left
     ///     - 'U' - undo last command (apart from 'undo' itself)
     /// All other commands are ignored
-    pub fn send_command(&mut self, cmd: char) {
+    pub fn send_command(&mut self, cmd: char) -> &mut Self {
         match cmd {
             'F'|'f' => {
-                // Cannot have immutable AND immutable borrow of self in the same block
+                // Cannot have immutable AND mutable borrow of self in the same block
                 // so a seperate block is created. This trick will no longer be needed 
                 // with non-lexical lifetimes 
                 let new_state = {
@@ -69,11 +82,21 @@ impl Rover {
             },
             _ => {}
         }
+        self
     } 
     /// Get state of the Rover (position & orientation)
     fn get_state(& self) -> &CrawlerState {
         self.state_queue.last().unwrap()
     }    
+}
+
+impl fmt::Display for Rover {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let  (ref orientation, (x, y)) = *self.get_state();
+
+        write!(f, "Rover orientation: {} ", orientation);
+        write!(f, "pos: ({}, {})", x, y)
+    }
 }
 
 pub trait Crawler<W>  {

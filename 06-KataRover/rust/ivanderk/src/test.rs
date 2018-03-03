@@ -49,18 +49,23 @@ pub fn test_world_bounds(){
 #[test]
 pub fn test_rover(){
     let mut rover = Rover::new();
-    
-    rover.send_command('R');
-    rover.send_command('F');
+
+    rover.send_command('R')
+        .send_command('F');
     assert_eq!(rover.get_state(), &(Orientation::East, (1,0)));
 
-    rover.send_command('L');
-    rover.send_command('F');
+    rover.send_command('L')
+        .send_command('F');
     assert_eq!(rover.get_state(), &(Orientation::North, (1,99)));
     
-    rover.send_command('U');
-    rover.send_command('U');
+    rover.send_command('U')
+        .send_command('U');
 
     assert_eq!(rover.get_state(), &(Orientation::East, (1,0)));
-    
+
+    rover.send_command('U')
+        .send_command('U')
+        .send_command('U');
+
+    assert_eq!(rover.get_state(), &(Orientation::North, (0,0)));
 }
