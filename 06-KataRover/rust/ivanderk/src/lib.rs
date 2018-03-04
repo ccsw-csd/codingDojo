@@ -1,14 +1,18 @@
 //! # Kata; rover 
 //! 
-//! ## 
+//! ## Implementation
 //! The rust solution is provided in the _rover_ module. 
-//! _Rover_ is a struct containing a stack of immatable states (CrawlerState)
+//! _Rover_ is a struct containing a stack of immutable states (CrawlerState)
+//! in order to implement a history of commands. The stack  is fixed size 
+//! through a VecDeque and controlled adding/removing of elements
+//! 
 //! ## License
 //! 
 //! Copyright (c) 2018 by Iwan van der Kleijn. All rights reserved.
 //! 
 //! This program is MIT licensed. See the file LICENSE.
 use std::fmt;
+use std::collections::VecDeque;
 
 #[derive(Debug, PartialEq)]
 pub enum Orientation {
@@ -31,12 +35,20 @@ impl fmt::Display for Orientation {
 #[derive(Debug)]
 pub struct Rover {
     world: (i32, i32),
-    state_queue: Vec<CrawlerState>
+    state: VecDeque<CrawlerState>
 } 
 
 impl Rover {
     pub fn new() -> Rover {
-        Rover {world: (100, 100), state_queue: vec![(Orientation::North, (0,0))]}
+        let mut vector: VecDeque<CrawlerState> = VecDeque::with_capacity(10);
+        vector.push_back((Orientation::North, (0,0)));
+        Rover {world: (100,100), state: vector}
+    }
+
+    pub fn new_with(state: CrawlerState, world: (i32,i32), capacity: usize) -> Rover {
+        let mut vector: VecDeque<CrawlerState> = VecDeque::with_capacity(capacity);
+        vector.push_back(state);
+        Rover {world: world, state: vector}
     }
     /// Send the following commands to the Rover:
     ///     - 'F' - move forward
@@ -51,42 +63,48 @@ impl Rover {
                 // Cannot have immutable AND mutable borrow of self in the same block
                 // so a seperate block is created. This trick will no longer be needed 
                 // with non-lexical lifetimes 
-                let new_state = {
+                let new_state : CrawlerState = {
                     self.get_state().move_forward(self.world)
                 };
-                self.state_queue.push(new_state); 
+                self.update_state(new_state); 
             },
             'B'|'b' => {
                 let new_state = {
                     self.get_state().move_backward(self.world)
                 };
-                self.state_queue.push(new_state); 
+                self.update_state(new_state); 
             },
             'L'|'l' => {
                 let new_state = {
                     self.get_state().turn_left(self.world)
                 };
-                self.state_queue.push(new_state); 
+                self.update_state(new_state);  
             },
             'R'|'r' => {
                 let new_state = {
                     self.get_state().turn_right(self.world)
                 };
-                self.state_queue.push(new_state); 
+                self.update_state(new_state);  
             },
             'U'|'u' => {
                 
-                if self.state_queue.len() > 1 {
-                    self.state_queue.pop(); 
+                if self.state.len() > 1 {
+                    self.state.pop_back(); 
                 }
             },
             _ => {}
         }
         self
     } 
+    fn update_state(&mut self, state: CrawlerState){
+        if self.state.len() == self.state.capacity() {
+            self.state.pop_front();
+        }
+        self.state.push_back(state);
+    }
     /// Get state of the Rover (position & orientation)
     fn get_state(& self) -> &CrawlerState {
-        self.state_queue.last().unwrap()
+        self.state.back().unwrap()
     }    
 }
 
@@ -94,8 +112,7 @@ impl fmt::Display for Rover {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let  (ref orientation, (x, y)) = *self.get_state();
 
-        write!(f, "Rover orientation: {} ", orientation);
-        write!(f, "pos: ({}, {})", x, y)
+        write!(f, "Rover orientation: {}, pos: ({}, {})", orientation, x, y)
     }
 }
 

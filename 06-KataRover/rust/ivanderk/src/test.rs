@@ -69,3 +69,21 @@ pub fn test_rover(){
 
     assert_eq!(rover.get_state(), &(Orientation::North, (0,0)));
 }
+
+#[test]
+pub fn test_rover_limited_history(){
+    let world = (0,0);
+    let mut rover = Rover::new_with((Orientation::North, (0,0)), world, 2);
+    rover.send_command('R')
+        .send_command('F')
+        .send_command('F')
+        .send_command('F')
+        .send_command('F')
+        .send_command('F')
+        .send_command('U')
+        .send_command('U')
+        .send_command('U')
+        .send_command('U');
+
+    assert_eq!(rover.get_state(), &(Orientation::East, (3,0)));
+}
