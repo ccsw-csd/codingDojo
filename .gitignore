@@ -2,6 +2,7 @@
 *.classpath
 *.iml
 target/
+**/bin/
 /.settings/
 eclipse-target/
 **/src/generated/
