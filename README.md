@@ -31,6 +31,7 @@
 	- Rust: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno))
 - Kata Rover : TDD-DesignPattern
 	- Java solution: session1 practice 
+	- Rust solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))
   
   
 ## Copyright
