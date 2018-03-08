@@ -32,7 +32,8 @@
 - Kata Rover : TDD-DesignPattern
 	- Java solution: practice (part 1 and part 2)
 	- Rust solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))
-  
+	- Elixir solution by Javi Mollà ([@javimolla](https://github.com/javimolla))
+
   
 ## Copyright
 
