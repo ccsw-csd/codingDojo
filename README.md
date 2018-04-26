@@ -34,6 +34,8 @@
 	- Rust solution by Iwan van der Kleijn ([@ivanderk](https://github.com/ivanderk))
 	- Elixir solution by Javi Mollà ([@javimolla](https://github.com/javimolla))
 	- Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
+- [Kata Incomprehensible Finder](https://github.com/DoDevJutsu/incomprehensible-finder-refactoring-java) : Refactoring
+	- Java solution: session practice
 
   
 ## Copyright
