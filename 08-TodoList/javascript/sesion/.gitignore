@@ -1,30 +1,3 @@
-*.class
-*.classpath
-*.iml
-target/
-/.settings/
-eclipse-target/
-**/src/generated/
-**/tmp/
-
-.classpath
-.project
-.settings/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-**/.vscode/**
-#ignore all bin dirs but NOT rust/src/bin dirs
-**/bin/
-!**/rust/src/bin/
-!**/rust/ivanderk/src/bin/
-
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
@@ -32,6 +5,7 @@ hs_err_pid*
 /dist-server
 /tmp
 /out-tsc
+/build
 
 # dependencies
 /node_modules
