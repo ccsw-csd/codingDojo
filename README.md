@@ -39,6 +39,7 @@
 	- Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
 - [Kata TodoList] : Refactoring
 	- Typescript solution: session practice
+	- Typescript solution: example by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
   
   
 ## Copyright

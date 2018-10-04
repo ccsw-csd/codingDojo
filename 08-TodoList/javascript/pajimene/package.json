@@ -1,0 +1,15 @@
+{
+  "name": "katatodolist",
+  "version": "1.0.0",
+  "description": "Coding Dojo Kata - ToDoList",
+  "scripts": {
+    "test": "jasmine-node build/spec --color --verbose"
+  },
+  "author": "CoE Java Devon",
+  "devDependencies": {
+    "@types/jasmine-node": "^1.14.30",
+    "@types/node": "^7.0.4",
+    "jasmine-node": "^1.14.5",
+    "tslint": "^4.4.2"
+  }
+}
