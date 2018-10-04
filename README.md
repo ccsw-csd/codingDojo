@@ -36,8 +36,10 @@
 	- Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
 - [Kata Incomprehensible Finder](https://github.com/DoDevJutsu/incomprehensible-finder-refactoring-java) : Refactoring
 	- Java solution: session practice
-  - Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
-
+	- Haskell: solution by Ferran Bou ([@fbougeno](https://github.com/fbougeno)) 
+- [Kata TodoList] : Refactoring
+	- Typescript solution: session practice
+  
   
 ## Copyright
 
