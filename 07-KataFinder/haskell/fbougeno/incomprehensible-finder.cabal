@@ -1,0 +1,69 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: ce6e63e9c4fc97e90aa0c104456f3708d86f342af076ee00072bb5760fa32cf3
+
+name:           incomprehensible-finder
+version:        0.1.0.0
+description:    Please see the README on Github at <https://github.com/githubuser/incomprehensible-finder#readme>
+homepage:       https://github.com/githubuser/incomprehensible-finder#readme
+bug-reports:    https://github.com/githubuser/incomprehensible-finder/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2018 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    ChangeLog.md
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/incomprehensible-finder
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , time
+  exposed-modules:
+      Builder
+      Lib
+      Types
+  other-modules:
+      Paths_incomprehensible_finder
+  default-language: Haskell2010
+
+executable incomprehensible-finder-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , incomprehensible-finder
+    , time
+  other-modules:
+      Paths_incomprehensible_finder
+  default-language: Haskell2010
+
+test-suite incomprehensible-finder-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hspec
+    , incomprehensible-finder
+    , time
+  other-modules:
+      LibSpec
+      Paths_incomprehensible_finder
+  default-language: Haskell2010
