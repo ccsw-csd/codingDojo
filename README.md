@@ -40,10 +40,13 @@
 - [Kata TodoList] : Refactoring
 	- Typescript solution: session practice
 	- Typescript solution: example by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
+- [Kata GildedRose2](https://github.com/emilybache/GildedRose-Refactoring-Kata) : Refactoring 
+  - Java solution: practice
+  - Java solution: example and strategy pattern by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
   
   
 ## Copyright
 
-Copyright (C) 2016 Capgemini ES
+Copyright (C) 2019 Capgemini ES
 
 Licensed under the MIT license. See the file "LICENSE" for details.
