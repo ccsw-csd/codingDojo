@@ -43,6 +43,8 @@
 - [Kata GildedRose2](https://github.com/emilybache/GildedRose-Refactoring-Kata) : Refactoring 
   - Java solution: practice
   - Java solution: example and strategy pattern by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
+- [Kata TrickOrTreat](https://www.codewars.com/kata/halloween-trick-or-treat) : Starting with TDD 
+  - Java solution: practice
   
   
 ## Copyright
