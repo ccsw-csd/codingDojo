@@ -46,7 +46,8 @@
 - [Kata TrickOrTreat](https://www.codewars.com/kata/halloween-trick-or-treat) : Starting with TDD 
   - Java solution: practice
   - Javascript: solution by Alexis Cuesta ([@acuestav](https://github.com/acuestav)) 
-  
+- Kata Christmas Problem
+  - Java solution: practice
   
   
   
