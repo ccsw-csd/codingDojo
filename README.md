@@ -45,6 +45,9 @@
   - Java solution: example and strategy pattern by Pablo Jimenez ([@pajimene](https://github.com/pajimene))
 - [Kata TrickOrTreat](https://www.codewars.com/kata/halloween-trick-or-treat) : Starting with TDD 
   - Java solution: practice
+  - Javascript: solution by Alexis Cuesta ([@acuestav](https://github.com/acuestav)) 
+  
+  
   
   
 ## Copyright
