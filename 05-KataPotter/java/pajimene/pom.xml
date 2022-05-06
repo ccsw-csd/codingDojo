@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.capgemini.coedevon.codingdojo</groupId>
+    <groupId>com.ccsw.coedevon.codingdojo</groupId>
     <artifactId>KataPotter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 

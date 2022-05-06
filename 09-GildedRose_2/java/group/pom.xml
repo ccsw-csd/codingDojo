@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.capgemini.coedevon.codingdojo</groupId>
+    <groupId>com.ccsw.coedevon.codingdojo</groupId>
     <artifactId>GildedRose</artifactId>
     <version>1.0</version>
 

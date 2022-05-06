@@ -53,6 +53,6 @@
   
 ## Copyright
 
-Copyright (C) 2019 Capgemini ES
+Copyright (C) 2019 ccsw ES
 
 Licensed under the MIT license. See the file "LICENSE" for details.
